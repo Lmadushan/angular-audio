@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title style="text-align: center;">
+      Record
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid fixed style="margin: 0; position: absolute; top: 30%;">
+    <ion-row>
+      <ion-col offset="2" size="8">
+        <p style="text-align: right; font-weight: bold; font-size: 10px; color: red;">{{getRecorderState()}}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row  style="margin-top: 50px;">
+      <ion-col offset="4" size="4">
+        <ion-button style="scale: 2;" *ngIf="!recording" (click)="startRecording()" expand="block" fill="clear" shape="round">
+          <ion-icon name="play-outline"></ion-icon>
+        </ion-button>
+
+        <ion-button *ngIf="recording" (click)="stopRecording()" expand="block" fill="clear" shape="round"
+          color="danger" style="scale: 2;">
+          <ion-icon name="stop-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="blobUrl" style="margin-top: 50px;">
+      <ion-col size="12" style="text-align: center;">
+        <audio [src]="blobUrl" id="audio" controls #audioTag></audio>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
